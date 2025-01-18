@@ -1,4 +1,4 @@
-
+import { motion } from "motion/react";
 const Header = () => {
   return (
     <header>
@@ -14,9 +14,13 @@ const Header = () => {
           />
         </svg>
       </div>
-      <div className="title">
+      <motion.div className="title" 
+      initial={{y:-100}}
+      animate={{y:0}}
+      transition={{duration:0.5 , type:"spring" , stiffness:250 ,delay:0.1}}
+      >
         <h1>Pizza Joint</h1>
-      </div>
+      </motion.div>
     </header>
   )
 }
