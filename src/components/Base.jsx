@@ -1,15 +1,51 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "motion/react";
+
+const containerVarients = {
+  hidden: {
+    opacity: 0,
+    x: "100vw",
+  },
+  visable: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      type: "spring",
+      delay: 0.5,
+    },
+  },
+};
+
+const nextVarients = {
+  hidden: {
+    x: "-100vw",
+  },
+  visable: {
+    x: 0,
+    transition: {
+      duration: 0.5,
+      type: "spring",
+      stiffness: 150,
+      delay: 0.2,
+    },
+  },
+};
+
 const Base = ({ addBase, pizza }) => {
   const bases = ["Classic", "Thin & Crispy", "Thick Crust"];
 
   return (
-    <div className="base container">
+    <motion.div
+      variants={containerVarients}
+      initial="hidden"
+      animate="visable"
+      className="base container"
+    >
       <motion.h3
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 ,delay: 0.1 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
       >
         Step 1: Choose Your Base
       </motion.h3>
@@ -20,7 +56,10 @@ const Base = ({ addBase, pizza }) => {
             <motion.li
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 , delay:(index+1) * 0.2 ,type:"tween" }}
+              whileHover={{
+                fontSize: "25px",
+                color: " rgb(234 179 8)",
+              }}
               key={base}
               onClick={() => addBase(base)}
             >
@@ -31,18 +70,21 @@ const Base = ({ addBase, pizza }) => {
       </ul>
 
       {pizza.base && (
-        <motion.div
-          className="next"
-          initial={{ x: "-100vw" }}
-          animate={{ x: 0 }}
-          transition={{ duration: 0.5 , type:"spring" ,stiffness:150 ,delay:0.2 }}
-        >
+        <motion.div variants={nextVarients} className="next">
           <Link to="/toppings">
-            <button>Next</button>
+            <motion.button
+              whileHover={{
+                scale: 1.3,
+                textShadow: "0 0 8px rgb(266 , 266 , 266)",
+                boxShadow: "0 0 8px rgb(266 , 266 , 266)",
+              }}
+            >
+              Next
+            </motion.button>
           </Link>
         </motion.div>
       )}
-    </div>
+    </motion.div>
   );
 };
 
