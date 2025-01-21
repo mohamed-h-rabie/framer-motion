@@ -14,7 +14,7 @@ const containerVarients = {
       when: "beforeChildren",
       mass: 0.4,
       damping: 8,
-      staggerChildren: 0.5,
+      staggerChildren: 0.5
     },
   },
 };
