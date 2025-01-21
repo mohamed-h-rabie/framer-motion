@@ -1,5 +1,13 @@
 import { Link } from "react-router-dom";
 import { motion } from "motion/react";
+const buttonVariants = {
+  hover:{
+    scale:[1,1.1,1,1.1,1,1.1,1],
+    textShadow:"0 0 8px rgb(266 , 266 , 266)",
+    boxShadow:"0 0 8px rgb(266 , 266 , 266)"
+  },
+
+}
 const Home = () => {
   return (
     <div className="home container">
@@ -12,11 +20,8 @@ const Home = () => {
       </motion.h2>
       <Link to="/base">
         <motion.button
-        whileHover={{
-          scale:1.3,
-          textShadow:"0 0 8px rgb(266 , 266 , 266)",
-          boxShadow:"0 0 8px rgb(266 , 266 , 266)"
-        }}
+variants={buttonVariants}
+whileHover="hover"
         >Create Your Pizza</motion.button>
       </Link>
     </div>
