@@ -1,5 +1,4 @@
 import { motion } from "motion/react";
-import { tr } from "motion/react-client";
 
 const containerVarients = {
   hidden: {
@@ -12,12 +11,18 @@ const containerVarients = {
     transition: {
       type: "spring",
       when: "beforeChildren",
-      mass: 0.4,
-      damping: 8,
-      staggerChildren: 0.5
+      mass: 0.8,
+      damping: 5,
+      staggerChildren: 0.5,
     },
   },
+
+  exit: {
+    x: "-100vw",
+    transition: { ease: "easeInOut" },
+  },
 };
+
 const childVarients = {
   hidden: {
     opacity: 0,
@@ -25,7 +30,6 @@ const childVarients = {
   visable: {
     opacity: 1,
   },
-
 };
 const Order = ({ pizza }) => {
   const { base, toppings } = pizza;
@@ -34,6 +38,7 @@ const Order = ({ pizza }) => {
       variants={containerVarients}
       initial="hidden"
       animate="visable"
+      exit="exit"
       className="container order"
     >
       <h2>Thank you for your order :)</h2>

@@ -5,18 +5,19 @@ import { motion } from "motion/react";
 const containerVarients = {
   hidden: {
     opacity: 0,
-    x: "100vw",
   },
-  visable: {
+  visible: {
     opacity: 1,
-    x: 0,
     transition: {
-      type: "spring",
       delay: 0.5,
+      duration: 1.5,
     },
   },
+  exit: {
+    x: "-100vw",
+    transition: { ease: "easeInOut" },
+  },
 };
-
 const buttonVariants = {
   hover: {
     scale: 1.1,
@@ -43,7 +44,8 @@ const Toppings = ({ addTopping, pizza }) => {
     <motion.div
       variants={containerVarients}
       initial="hidden"
-      animate="visable"
+      animate="visible"
+      exit="exit"
       className="toppings container"
     >
       <h3>Step 2: Choose Toppings</h3>
